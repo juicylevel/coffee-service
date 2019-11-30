@@ -1,6 +1,7 @@
 import { findIndex } from 'lodash';
 import { Account, Order } from '../entities';
 import firestore from './firestore';
+import { createRecord } from '../utils';
 
 export default async (account: Account): Promise<Array<Order>> => {
     const orders = await firestore
@@ -9,7 +10,7 @@ export default async (account: Account): Promise<Array<Order>> => {
         .limit(5)
         .get();
 
-    const ordersList = orders.docs.map(order => order.data()) as Order[];
+    const ordersList = orders.docs.map(order => createRecord(order)) as Order[];
     const lastFreeOrderIndex = findIndex(ordersList.reverse(), { 
         isFree: true 
     });

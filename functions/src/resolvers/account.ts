@@ -1,16 +1,9 @@
-import { getAccount, createAccount } from '../db';
-import { Account, AccountInput } from '../entities';
+import { getAccount } from '../db';
+import { Account } from '../entities';
 
 export default async (
     root: null, 
     args: { phone: string }
-): Promise<Account> => {
-    const { phone } = args;
-    const account = await getAccount(phone);
-    if (!account) {
-        const input = { phone } as AccountInput;
-        return await createAccount(input);
-    } else {
-        return account;
-    }
-};
+): Promise<Account | null> => (
+    getAccount(args.phone)
+);

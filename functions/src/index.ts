@@ -6,7 +6,8 @@ import resolvers from './resolvers';
 
 const server = new ApolloServer({ 
     typeDefs, 
-    resolvers 
+    resolvers,
+    introspection: true
 });
 
 const app = express();

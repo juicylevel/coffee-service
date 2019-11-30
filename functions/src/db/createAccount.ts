@@ -1,5 +1,6 @@
 import { Timestamp } from '@google-cloud/firestore';
 import { Account, AccountInput } from '../entities';
+import { createRecord } from '../utils';
 import firestore from './firestore';
 
 export default async (input: AccountInput): Promise<Account> => {
@@ -11,5 +12,5 @@ export default async (input: AccountInput): Promise<Account> => {
             phone
         });
     const querySnap = await account.get();
-    return querySnap.data() as Account;
+    return createRecord(querySnap) as Account;
 };

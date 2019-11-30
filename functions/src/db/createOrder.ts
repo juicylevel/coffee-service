@@ -1,5 +1,6 @@
 import { Timestamp } from '@google-cloud/firestore';
 import { Order, OrderInput } from '../entities';
+import { createRecord } from '../utils';
 import firestore from './firestore';
 
 export default async (input: OrderInput): Promise<Order> => {
@@ -11,5 +12,5 @@ export default async (input: OrderInput): Promise<Order> => {
             isFree
         });
     const querySnap = await order.get();
-    return querySnap.data() as Order;
+    return createRecord(querySnap) as Order;
 };
