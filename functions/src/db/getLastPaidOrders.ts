@@ -1,21 +1,21 @@
 import { findIndex } from 'lodash';
+import { Account, Order } from '../entities';
 import firestore from './firestore';
-import createDataItems from './createDataItems';
 
-export default async account => (
-    firestore
+export default async (account: Account): Promise<Array<Order>> => {
+    const orders = await firestore
         .collection(`accounts/${account.id}/orders`)
         .orderBy('createAt', 'desc')
         .limit(5)
-        .get()
-        .then(snap => {
-            const orders = createDataItems(snap).reverse();
-            const lastFreeOrderIndex = findIndex(orders, { 
-                isFree: true 
-            });
-            return orders.slice(
-                lastFreeOrderIndex + 1, 
-                orders.length
-            );
-        })
-);
+        .get();
+
+    const ordersList = orders.docs.map(order => order.data()) as Order[];
+    const lastFreeOrderIndex = findIndex(ordersList.reverse(), { 
+        isFree: true 
+    });
+
+    return ordersList.slice(
+        lastFreeOrderIndex + 1, 
+        ordersList.length
+    );
+};

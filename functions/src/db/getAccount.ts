@@ -1,14 +1,16 @@
 import { first } from 'lodash';
+import { Account } from '../entities';
 import firestore from './firestore';
-import createDataItems from './createDataItems';
 
-export default async phone => (
-    firestore
+export default async (phone: string): Promise<Account> => {
+    const accounts = await firestore
         .collection('accounts')
         .where('phone', '==', phone)
-        .get()
-        .then(snap => {
-            const accounts = createDataItems(snap);
-            return first(accounts);
-        })
-);
+        .limit(1)
+        .get();
+
+    const accountsList = accounts.docs.map(account => account.data());
+    const account = first(accountsList) as Account;
+    
+    return account;
+};

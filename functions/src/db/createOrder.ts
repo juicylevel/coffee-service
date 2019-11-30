@@ -1,16 +1,15 @@
-import admin from 'firebase-admin';
+import { Timestamp } from '@google-cloud/firestore';
+import { Order, OrderInput } from '../entities';
 import firestore from './firestore';
-import createDataItem from './createDataItem';
 
-const { Timestamp } = admin.firestore;
-
-export default async (accountId, isFree) => (
-    firestore
+export default async (input: OrderInput): Promise<Order> => {
+    const { accountId, isFree } = input;
+    const order = await firestore
         .collection(`accounts/${accountId}/orders`)
         .add({
             createAt: Timestamp.now(),
             isFree
-        })
-        .then(doc => doc.get())
-        .then(snap => createDataItem(snap))
-);
+        });
+    const querySnap = await order.get();
+    return querySnap.data() as Order;
+};

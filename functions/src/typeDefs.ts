@@ -4,14 +4,14 @@ export default gql`
     scalar Timestamp
 
     type Account {
-        id: String!
+        id: ID!
         createAt: Timestamp!
         phone: String!
         lastPaidOrders: [Order!]
     }
 
     type Order {
-        id: String!
+        id: ID!
         createAt: Timestamp!
         isFree: Boolean!
     }
@@ -21,7 +21,16 @@ export default gql`
     }
 
     type Mutation {
-        createAccount(phone: String!): Account
-        createOrder(accountId: String!, isFree: Boolean!): Order!
+        createAccount(input: AccountInput!): Account
+        createOrder(input: OrderInput!): Order!
+    }
+
+    input AccountInput {
+        phone: String!
+    }
+
+    input OrderInput {
+        accountId: ID!
+        isFree: Boolean!
     }
 `;
