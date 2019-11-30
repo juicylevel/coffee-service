@@ -27,7 +27,11 @@ Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://local
 
 ```
 mutation CreateAccount {
-    createAccount(phone: "+79009990001") {
+    createAccount(
+      input: { 
+        phone: "+79009990001" 
+      }
+    ) {
         id
         phone
         createAt
@@ -56,7 +60,12 @@ mutation CreateAccount {
 
 ```
 mutation CreateOrder {
-    createOrder(accountId: "jZf9v24HPqYx09k1Mv9s") {
+    createOrder(
+      input: { 
+        accountId: "bcWiTD34hAZKySWLVh9Z", 
+        isFree: false
+      }
+    ) {
         id
         createAt
         isFree
