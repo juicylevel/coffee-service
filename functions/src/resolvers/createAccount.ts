@@ -1,22 +1,27 @@
+import { ApolloError, ValidationError } from 'apollo-server-core';
 import { oneLine } from 'common-tags';
-import { getAccount, createAccount } from '../db';
 import { Account, AccountInput } from '../entities';
+import { getAccount, createAccount } from '../db';
 
 export default async (
     root: null, 
     args: { input: AccountInput }
 ): Promise<Account> => {
-    const { input } = args;
-    const { phone } = input;
-    const account = await getAccount(phone);
-    if (!account) {
-        return await createAccount(input);
-    } else {
-        throw new Error(
-            oneLine`
-                Account already exist: 
-                ID ${account.id}, 
-                phone ${phone}`
-        );
+    try {
+        const { input } = args;
+        const { phone } = input;
+        const account = await getAccount(phone);
+        if (!account) {
+            return await createAccount(input);
+        } else {
+            throw new ValidationError(
+                oneLine`
+                    Account already exist: 
+                    ID ${account.id}, 
+                    phone ${phone}`
+            );
+        }
+    } catch (error) {
+        throw new ApolloError(error);
     }
 };
