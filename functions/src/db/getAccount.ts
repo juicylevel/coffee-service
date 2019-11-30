@@ -1,3 +1,4 @@
+import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
 import { isEmpty } from 'lodash';
 import { Account } from '../entities';
 import firestore from './firestore';
@@ -10,7 +11,9 @@ export default async (phone: string): Promise<Account | null> => {
         .limit(1)
         .get();
 
-    const accountsList = accounts.docs.map(account => account);
+    const accountsList = accounts.docs.map(
+        (accountSnap: DocumentSnapshot) => accountSnap
+    );
     const account = !isEmpty(accountsList)
         ? createRecord(accountsList[0]) as Account
         : null;
