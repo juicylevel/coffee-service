@@ -16,7 +16,7 @@ $ npm install
 ### Run
 ```
 $ cd functions
-$ firebase serve
+$ npm run serve
 ```
 
 Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://localhost:5000/coffee-7be5e/us-central1/graphql)
