@@ -5,5 +5,5 @@ export default interface Account {
     id: string;
     reateAt: Timestamp;
     phone: string;
-    lastPaidOrders: Array<Order>
+    lastPaidOrders: Array<Order>;
 };

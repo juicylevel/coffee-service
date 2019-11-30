@@ -1,3 +1,4 @@
+import { oneLine } from 'common-tags';
 import { getAccount, createAccount } from '../db';
 import { Account, AccountInput } from '../entities';
 
@@ -11,6 +12,11 @@ export default async (
     if (!account) {
         return await createAccount(input);
     } else {
-        throw new Error(`Account already exist: ID ${account.id}, phone ${phone}`)
+        throw new Error(
+            oneLine`
+                Account already exist: 
+                ID ${account.id}, 
+                phone ${phone}`
+        );
     }
 };
