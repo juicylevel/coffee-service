@@ -19,7 +19,7 @@ $ cd functions
 $ npm run serve
 ```
 
-Firebase [project console](https://console.firebase.google.com/project/coffee-7be5e).
+Firebase [project console](https://console.firebase.google.com/project/coffee-7be5e).  
 Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://localhost:5000/coffee-7be5e/us-central1/graphql).
 
 # API examples
