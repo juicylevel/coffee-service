@@ -72,3 +72,24 @@ mutation CreateOrder {
     }
 }
 ```
+
+### Login
+
+```
+mutation Login {
+    login(
+      input: { 
+        phone: "+79009990001" 
+      }
+    ) {
+        id
+        phone
+        createAt
+        lastPaidOrders {
+          id
+          createAt
+          isFree
+        }
+    }
+}
+```

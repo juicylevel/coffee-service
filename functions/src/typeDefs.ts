@@ -23,6 +23,7 @@ export default gql`
     type Mutation {
         createAccount(input: AccountInput!): Account
         createOrder(input: OrderInput!): Order!
+        login(input: LoginInput!): !Account
     }
 
     input AccountInput {
@@ -32,5 +33,9 @@ export default gql`
     input OrderInput {
         accountId: ID!
         isFree: Boolean!
+    }
+
+    input LoginInput {
+        phone: String!
     }
 `;

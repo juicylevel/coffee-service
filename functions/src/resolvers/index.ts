@@ -3,6 +3,7 @@ import account from './account';
 import lastPaidOrders from './lastPaidOrders';
 import createAccount from './createAccount';
 import createOrder from './createOrder';
+import login from './login';
 
 export default {
     Timestamp,
@@ -15,5 +16,6 @@ export default {
     Mutation: {
         createAccount,
         createOrder,
+        login,
     },
 };
