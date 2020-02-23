@@ -4,7 +4,7 @@
 ```
 $ npm install -g firebase-tools
 ```
-See more [Firebase CLI reference](https://firebase.google.com/docs/cli)
+See more [Firebase CLI reference](https://firebase.google.com/docs/cli).
 
 ### Install npm packages
 Run command into functions directory:
@@ -19,8 +19,8 @@ $ cd functions
 $ npm run serve
 ```
 
-Firebase [console](https://console.firebase.google.com/project/coffee-7be5e)  
-Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://localhost:5000/coffee-7be5e/us-central1/graphql)
+Firebase [project console](https://console.firebase.google.com/project/coffee-7be5e).
+Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://localhost:5000/coffee-7be5e/us-central1/graphql).
 
 # API examples
 

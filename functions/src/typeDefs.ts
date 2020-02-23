@@ -23,7 +23,7 @@ export default gql`
     type Mutation {
         createAccount(input: AccountInput!): Account
         createOrder(input: OrderInput!): Order!
-        login(input: LoginInput!): !Account
+        login(input: LoginInput!): Account!
     }
 
     input AccountInput {
