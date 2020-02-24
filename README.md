@@ -28,15 +28,15 @@ Playground [http://localhost:5000/coffee-7be5e/us-central1/graphql](http://local
 
 ```
 mutation CreateAccount {
-    createAccount(
-      input: { 
-        phone: "+79009990001" 
-      }
-    ) {
-        id
-        phone
-        createAt
+  createAccount(
+    input: { 
+      phone: "+79009990001" 
     }
+  ) {
+    id
+    phone
+    createAt
+  }
 }
 ```
 
@@ -44,16 +44,16 @@ mutation CreateAccount {
 
 ```
 {
-    account(phone: "+79009990001") {
-        id
-        phone
-        createAt
-        lastPaidOrders {
-            id
-            createAt
-            isFree
-        }
+  account(phone: "+79009990001") {
+    id
+    phone
+    createAt
+    lastPaidOrders {
+      id
+      createAt
+      isFree
     }
+  }
 }
 ```
 
@@ -61,16 +61,16 @@ mutation CreateAccount {
 
 ```
 mutation CreateOrder {
-    createOrder(
-      input: { 
-        accountId: "bcWiTD34hAZKySWLVh9Z", 
-        isFree: false
-      }
-    ) {
-        id
-        createAt
-        isFree
+  createOrder(
+    input: { 
+      accountId: "bcWiTD34hAZKySWLVh9Z", 
+      isFree: false
     }
+  ) {
+    id
+    createAt
+    isFree
+  }
 }
 ```
 
@@ -78,19 +78,34 @@ mutation CreateOrder {
 
 ```
 mutation Login {
-    login(
-      input: { 
-        phone: "+79009990001" 
-      }
-    ) {
-        id
-        phone
-        createAt
-        lastPaidOrders {
-          id
-          createAt
-          isFree
-        }
+  login(
+    input: { 
+      phone: "+79009990001" 
     }
+  ) {
+    id
+    phone
+    createAt
+    lastPaidOrders {
+      id
+      createAt
+      isFree
+    }
+  }
+}
+```
+
+### Change phone
+
+```
+mutation ChangePhone {
+  changePhone(
+    input: {
+      accountId: "xxQ1nOe0XSrw6YbsgKDq",
+      newPhone: "+79040000000" 
+    }
+  ) {
+    phone
+  }
 }
 ```
