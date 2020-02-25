@@ -4,11 +4,13 @@ import { updatePhone } from '../db';
 
 export default async (
     root: null, 
-    args: { input: UpdatePhoneInput }
+    args: { input: UpdatePhoneInput },
+    context: { accountId: string }
 ): Promise<string | null> => {
+    const { accountId } = context;
     try {
         const { input } = args;
-        const { accountId, newPhone } = input;
+        const { newPhone } = input;
         return await updatePhone(accountId, newPhone);
     } catch (error) {
         throw new ApolloError(error);

@@ -15,9 +15,11 @@ export default {
         lastPaidOrders,
     },
     Mutation: {
-        createAccount,
-        createOrder,
         login,
+        createAccount,
+        
+        // with context
+        createOrder,
         updatePhone,
     },
 };

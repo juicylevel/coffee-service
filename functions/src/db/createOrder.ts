@@ -1,10 +1,9 @@
 import { Timestamp } from '@google-cloud/firestore';
-import { Order, OrderInput } from '../entities';
+import { Order } from '../entities';
 import { createRecord } from '../utils';
 import firestore from './firestore';
 
-export default async (input: OrderInput): Promise<Order> => {
-    const { accountId, isFree } = input;
+export default async (accountId: string, isFree: boolean): Promise<Order> => {
     const order = await firestore
         .collection(`accounts/${accountId}/orders`)
         .add({

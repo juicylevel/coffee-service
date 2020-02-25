@@ -7,7 +7,11 @@ import resolvers from './resolvers';
 const server = new ApolloServer({ 
     typeDefs, 
     resolvers,
-    introspection: true
+    introspection: true,
+    context: ({ req }) => {
+        const accountId = req.headers.account || null;
+        return { accountId };
+    }
 });
 
 const app = express();
