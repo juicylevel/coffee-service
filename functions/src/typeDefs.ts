@@ -24,7 +24,7 @@ export default gql`
         createAccount(input: AccountInput!): Account
         createOrder(input: OrderInput!): Order!
         login(input: LoginInput!): Account!
-        changePhone(input: ChangePhoneInput!): String!
+        updatePhone(input: UpdatePhoneInput!): String!
     }
 
     input AccountInput {
@@ -40,7 +40,7 @@ export default gql`
         phone: String!
     }
 
-    input ChangePhoneInput {
+    input UpdatePhoneInput {
         accountId: ID!
         newPhone: String!
     }

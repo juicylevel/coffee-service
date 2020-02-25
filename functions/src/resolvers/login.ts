@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-server-core';
 import { Account, LoginInput } from '../entities';
-import { getAccount, createAccount } from '../db';
+import { getAccountByPhone, createAccount } from '../db';
 
 export default async (
     root: null, 
@@ -9,7 +9,7 @@ export default async (
     try {
         const { input } = args;
         const { phone } = input;
-        const account = await getAccount(phone);
+        const account = await getAccountByPhone(phone);
         return account
             ? account
             : await createAccount(input);

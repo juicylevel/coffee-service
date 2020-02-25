@@ -95,17 +95,15 @@ mutation Login {
 }
 ```
 
-### Change phone
+### Update phone
 
 ```
-mutation ChangePhone {
-  changePhone(
+mutation UpdatePhone {
+  updatePhone(
     input: {
       accountId: "xxQ1nOe0XSrw6YbsgKDq",
       newPhone: "+79040000000" 
     }
-  ) {
-    phone
-  }
+  )
 }
 ```

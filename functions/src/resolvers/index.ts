@@ -4,7 +4,7 @@ import lastPaidOrders from './lastPaidOrders';
 import createAccount from './createAccount';
 import createOrder from './createOrder';
 import login from './login';
-import changePhone from './changePhone';
+import updatePhone from './updatePhone';
 
 export default {
     Timestamp,
@@ -18,6 +18,6 @@ export default {
         createAccount,
         createOrder,
         login,
-        changePhone,
+        updatePhone,
     },
 };

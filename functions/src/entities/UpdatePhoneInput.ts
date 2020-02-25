@@ -1,4 +1,4 @@
-export default interface ChangePhoneInput {
+export default interface UpdatePhoneInput {
     accountId: string;
     newPhone: string;
 };

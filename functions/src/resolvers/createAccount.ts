@@ -1,7 +1,7 @@
 import { ApolloError, ValidationError } from 'apollo-server-core';
 import { oneLine } from 'common-tags';
 import { Account, AccountInput } from '../entities';
-import { getAccount, createAccount } from '../db';
+import { getAccountByPhone, createAccount } from '../db';
 
 export default async (
     root: null, 
@@ -10,7 +10,7 @@ export default async (
     try {
         const { input } = args;
         const { phone } = input;
-        const account = await getAccount(phone);
+        const account = await getAccountByPhone(phone);
         if (!account) {
             return await createAccount(input);
         } else {
