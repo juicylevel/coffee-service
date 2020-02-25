@@ -1,4 +1,4 @@
-import { ApolloError, ValidationError } from 'apollo-server-core';
+import { ApolloError } from 'apollo-server-core';
 import { Account } from '../entities';
 import { getAccountByPhone } from '../db';
 
@@ -10,7 +10,7 @@ export default async (
         const { phone } = args;
         const account = await getAccountByPhone(phone);
         if (!account) {
-            throw new ValidationError(`Account by ${phone} not found.`);
+            throw new Error(`Account by ${phone} not found.`);
         }
         return account;
     } catch (error) {

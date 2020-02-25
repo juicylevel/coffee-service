@@ -1,4 +1,4 @@
-import { ApolloError, ValidationError } from 'apollo-server-core';
+import { ApolloError } from 'apollo-server-core';
 import { oneLine } from 'common-tags';
 import { Account, AccountInput } from '../entities';
 import { getAccountByPhone, createAccount } from '../db';
@@ -14,7 +14,7 @@ export default async (
         if (!account) {
             return await createAccount(input);
         } else {
-            throw new ValidationError(
+            throw new Error(
                 oneLine`
                     Account already exist: 
                     ID ${account.id}, 
