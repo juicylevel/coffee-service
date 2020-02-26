@@ -32,7 +32,7 @@ export default gql`
     }
 
     input OrderInput {
-        accountId: ID!
+        accountId: ID
         isFree: Boolean!
     }
 
@@ -41,7 +41,7 @@ export default gql`
     }
 
     input UpdatePhoneInput {
-        accountId: ID!
+        accountId: ID
         newPhone: String!
     }
 `;

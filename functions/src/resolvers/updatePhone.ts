@@ -7,9 +7,9 @@ export default async (
     args: { input: UpdatePhoneInput },
     context: { accountId: string }
 ): Promise<string | null> => {
-    const { accountId } = context;
     try {
         const { input } = args;
+        const accountId = context.accountId || input.accountId;
         const { newPhone } = input;
         return await updatePhone(accountId, newPhone);
     } catch (error) {

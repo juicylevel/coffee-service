@@ -7,8 +7,9 @@ export default async (
     args: { input: OrderInput },
     context: { accountId: string }
 ): Promise<Order> => {
-    const { accountId } = context;
-    const { input: { isFree } } = args;
+    const { input } = args;
+    const accountId = context.accountId || input.accountId;
+    const { isFree } = input;
     try {
         return createOrder(accountId, isFree);
     } catch (error) {
