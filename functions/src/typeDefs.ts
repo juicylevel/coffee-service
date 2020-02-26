@@ -17,7 +17,7 @@ export default gql`
     }
 
     type Query {
-        account(phone: String!): Account
+        account(id: String, phone: String): Account
     }
 
     type Mutation {
