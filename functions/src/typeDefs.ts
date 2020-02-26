@@ -31,7 +31,7 @@ export default gql`
         login(input: LoginInput!): Account!
         # accountId from input | accountId from context
         # TODO: need opts?
-        updatePhone(input: UpdatePhoneInput!): String!
+        updatePhone(input: UpdatePhoneInput!): Account!
     }
 
     input AccountInput {
