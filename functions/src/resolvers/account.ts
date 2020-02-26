@@ -5,22 +5,27 @@ import { getAccountById, getAccountByPhone } from '../db';
 
 export default async (
     root: null, 
-    args: { accountId: string, phone: string },
+    args: { id: string, phone: string },
     context: { accountId: string }
-): Promise<Account> => {
+): Promise<Account | null> => {
     try {
         const { phone } = args;
-        const accountId = context.accountId || args.accountId;
+        const accountId = context.accountId || args.id;
 
-        const loader = accountId 
-            ? getAccountById 
-            : getAccountByPhone;
+        let account: Account | null;
 
-        const account = await loader(accountId);
+        if (accountId) {
+            account = await getAccountById(accountId);
+        } else if (phone) {
+            account = await getAccountByPhone(phone);
+        } else {
+            throw 'No required arguments: accountId or phone';
+        }
+
         if (!account) {
-            throw new Error(oneLine`
+            throw oneLine`
                 Account by ${accountId || phone} not found.
-            `);
+            `;
         }
 
         return account;

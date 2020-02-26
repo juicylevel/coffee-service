@@ -14,6 +14,7 @@ export default async (phone: string): Promise<Account | null> => {
     const accountsList = accounts.docs.map(
         (accountSnap: DocumentSnapshot) => accountSnap
     );
+    
     const account = !isEmpty(accountsList)
         ? createRecord(accountsList[0]) as Account
         : null;

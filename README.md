@@ -44,7 +44,8 @@ mutation CreateAccount {
 
 ```
 {
-  account(phone: "+79009990001") {
+  // id | phone | accountId from context
+  account(id: "xxQ1nOe0XSrw6YbsgKDq", phone: "+79040000088") {
     id
     phone
     createAt
@@ -60,6 +61,7 @@ mutation CreateAccount {
 ### Create order
 
 ```
+// accountId | accountId from context
 mutation CreateOrder {
   createOrder(
     input: { 
@@ -98,6 +100,7 @@ mutation Login {
 ### Update phone
 
 ```
+// accountId | accountId from context
 mutation UpdatePhone {
   updatePhone(
     input: {
