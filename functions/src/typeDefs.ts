@@ -19,14 +19,18 @@ export default gql`
     type Query {
         # id | phone | accountId from context
         account(id: String, phone: String): Account
+        # TODO: create currentAccount query and resolver (accountId from context)
+        # TODO: account resolver (use only arguments)
     }
 
     type Mutation {
         createAccount(input: AccountInput!): Account
         # accountId from input | accountId from context
+        # TODO: need opts?
         createOrder(input: OrderInput!): Order!
         login(input: LoginInput!): Account!
         # accountId from input | accountId from context
+        # TODO: need opts?
         updatePhone(input: UpdatePhoneInput!): String!
     }
 
