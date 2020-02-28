@@ -27,7 +27,7 @@ export default gql`
         createAccount(input: AccountInput!): Account
         # accountId from input | accountId from context
         # TODO: need opts?
-        createOrder(input: OrderInput!): Order!
+        createOrder(input: OrderInput): [Order!]!
         login(input: LoginInput!): Account!
         # accountId from input | accountId from context
         # TODO: need opts?
@@ -40,7 +40,6 @@ export default gql`
 
     input OrderInput {
         accountId: ID
-        isFree: Boolean!
     }
 
     input LoginInput {

@@ -1,0 +1,1 @@
+export const MAX_PAID_ORDERS = 5;

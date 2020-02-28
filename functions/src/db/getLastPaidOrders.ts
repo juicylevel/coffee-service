@@ -3,12 +3,13 @@ import { findIndex } from 'lodash';
 import { Account, Order } from '../entities';
 import firestore from './firestore';
 import { createRecord } from '../utils';
+import { MAX_PAID_ORDERS } from '../constants';
 
 export default async (account: Account): Promise<Array<Order>> => {
     const orders = await firestore
         .collection(`accounts/${account.id}/orders`)
         .orderBy('createAt', 'desc')
-        .limit(5)
+        .limit(MAX_PAID_ORDERS)
         .get();
 
     const ordersList = orders.docs.map(

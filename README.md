@@ -66,7 +66,6 @@ mutation CreateOrder {
   createOrder(
     input: { 
       accountId: "bcWiTD34hAZKySWLVh9Z", 
-      isFree: false
     }
   ) {
     id
