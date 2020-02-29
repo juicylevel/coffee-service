@@ -14,6 +14,7 @@ export default async (
         if (!account) {
             return await createAccount(input);
         } else {
+            // TODO throw exception Error type
             throw new Error(
                 oneLine`
                     Account already exist: 

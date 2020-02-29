@@ -24,4 +24,13 @@ export default {
         createOrder,
         updatePhone,
     },
+    Item: {
+        // TODO
+        __resolveType(obj: Object, context, info) {
+            if (obj.hasOwnProperty('isFree')) {
+                return 'Order';
+            }
+            return null;
+        },
+    },
 };

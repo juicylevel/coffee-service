@@ -1,7 +1,22 @@
 import { gql } from 'apollo-server-express';
 
+// TODO: separate schema
 export default gql`
     scalar Timestamp
+
+    union Item = Order
+
+    type Pagination {
+        limit: Int!
+        offset: Int!
+    }
+
+    type List {
+        pagination: Pagination!
+        items: [Item!]
+        total: Int!
+        hasNext: Boolean!
+    }
 
     type Account {
         id: ID!
@@ -19,7 +34,7 @@ export default gql`
     type Query {
         # id | phone | accountId from context
         account(id: String, phone: String): Account
-        orders(pagination: Pagination!): [Order!]!
+        orders(pagination: PaginationInput!): List!
 
         # TODO: create currentAccount query and resolver (accountId from context)
         # TODO: account resolver (use only arguments)
@@ -36,7 +51,7 @@ export default gql`
         updatePhone(input: UpdatePhoneInput!): Account!
     }
 
-    input Pagination {
+    input PaginationInput {
         limit: Int!
         offset: Int!
     }

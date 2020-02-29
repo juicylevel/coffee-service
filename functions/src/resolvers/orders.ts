@@ -1,19 +1,34 @@
 import { ApolloError } from 'apollo-server-core';
-import { Pagination, Order } from '../entities';
+import { Pagination, List, Order } from '../entities';
 import { getOrders } from '../db';
 
 export default async (
     root: null, 
     args: { pagination: Pagination },
     context: { accountId: string }
-): Promise<Order[]> => {
+): Promise<List> => {
     try {
-        const { limit, offset } = args.pagination;
+        const { pagination } = args;
+        const { limit, offset } = pagination;
         const { accountId } = context;
         if (!accountId) {
-            throw 'No required arguments: accountId';
+            // TODO throw exception Error type
+            throw 'No required context argument: accountId'; 
         }
-        return getOrders(accountId, limit, offset);
+        const orders: Order[] = await getOrders(
+            accountId, 
+            limit, 
+            offset
+        );
+        // TODO
+        const list: List = {
+            pagination,
+            items: orders,
+            total: 0,
+            hasNext: true,
+        } as List;
+        //
+        return list;
     } catch (error) {
         throw new ApolloError(error);
     }

@@ -85,9 +85,20 @@ mutation CreateOrder {
       offset: 0 
     }
   ) {
-    id
-    createAt
-    isFree
+      pagination {
+        limit
+        offset
+      }
+      total
+      hasNext
+      items {
+        ... on Order {
+          id
+          createAt
+          isFree
+        }
+      }
+    }
   }
 }
 ```

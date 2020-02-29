@@ -19,6 +19,7 @@ export default async (
         } else if (phone) {
             account = await getAccountByPhone(phone);
         } else {
+            // TODO throw exception Error type
             throw 'No required arguments: accountId or phone';
         }
 
