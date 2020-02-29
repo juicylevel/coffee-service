@@ -19,6 +19,8 @@ export default gql`
     type Query {
         # id | phone | accountId from context
         account(id: String, phone: String): Account
+        orders(pagination: Pagination!): [Order!]!
+
         # TODO: create currentAccount query and resolver (accountId from context)
         # TODO: account resolver (use only arguments)
     }
@@ -32,6 +34,11 @@ export default gql`
         # accountId from input | accountId from context
         # TODO: need opts?
         updatePhone(input: UpdatePhoneInput!): Account!
+    }
+
+    input Pagination {
+        limit: Int!
+        offset: Int!
     }
 
     input AccountInput {

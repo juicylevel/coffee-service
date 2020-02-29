@@ -75,6 +75,23 @@ mutation CreateOrder {
 }
 ```
 
+### Get orders
+
+```
+{
+  orders(
+    pagination: { 
+      limit: 12, 
+      offset: 0 
+    }
+  ) {
+    id
+    createAt
+    isFree
+  }
+}
+```
+
 ### Login
 
 ```
