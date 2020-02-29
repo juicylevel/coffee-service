@@ -1,10 +1,10 @@
 import { ApolloError } from 'apollo-server-core';
-import { Pagination, List, Order } from '../entities';
+import { PaginationInput, Pagination, List, Order } from '../entities';
 import { getOrders } from '../db';
 
 export default async (
     root: null, 
-    args: { pagination: Pagination },
+    args: { pagination: PaginationInput },
     context: { accountId: string }
 ): Promise<List> => {
     try {
@@ -22,10 +22,12 @@ export default async (
         );
         // TODO
         const list: List = {
-            pagination,
+            pagination: {
+                ...pagination,
+                total: 0,
+                hasNext: true,
+            } as Pagination,
             items: orders,
-            total: 0,
-            hasNext: true,
         } as List;
         //
         return list;

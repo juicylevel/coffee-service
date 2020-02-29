@@ -9,13 +9,13 @@ export default gql`
     type Pagination {
         limit: Int!
         offset: Int!
+        total: Int!
+        hasNext: Boolean!
     }
 
     type List {
         pagination: Pagination!
         items: [Item!]
-        total: Int!
-        hasNext: Boolean!
     }
 
     type Account {
@@ -29,26 +29,6 @@ export default gql`
         id: ID!
         createAt: Timestamp!
         isFree: Boolean!
-    }
-
-    type Query {
-        # id | phone | accountId from context
-        account(id: String, phone: String): Account
-        orders(pagination: PaginationInput!): List!
-
-        # TODO: create currentAccount query and resolver (accountId from context)
-        # TODO: account resolver (use only arguments)
-    }
-
-    type Mutation {
-        createAccount(input: AccountInput!): Account
-        # accountId from input | accountId from context
-        # TODO: need opts?
-        createOrder(input: OrderInput): [Order!]!
-        login(input: LoginInput!): Account!
-        # accountId from input | accountId from context
-        # TODO: need opts?
-        updatePhone(input: UpdatePhoneInput!): Account!
     }
 
     input PaginationInput {
@@ -71,5 +51,25 @@ export default gql`
     input UpdatePhoneInput {
         accountId: ID
         newPhone: String!
+    }
+
+    type Query {
+        # id | phone | accountId from context
+        account(id: String, phone: String): Account
+        orders(pagination: PaginationInput!): List!
+
+        # TODO: create currentAccount query and resolver (accountId from context)
+        # TODO: account resolver (use only arguments)
+    }
+
+    type Mutation {
+        createAccount(input: AccountInput!): Account
+        # accountId from input | accountId from context
+        # TODO: need opts?
+        createOrder(input: OrderInput): [Order!]!
+        login(input: LoginInput!): Account!
+        # accountId from input | accountId from context
+        # TODO: need opts?
+        updatePhone(input: UpdatePhoneInput!): Account!
     }
 `;

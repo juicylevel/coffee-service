@@ -88,9 +88,9 @@ mutation CreateOrder {
       pagination {
         limit
         offset
+        total
+        hasNext
       }
-      total
-      hasNext
       items {
         ... on Order {
           id
