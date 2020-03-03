@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-server-core';
 import { PaginationInput, Pagination, List, Order } from '../entities';
-import { getOrders } from '../db';
+import { getOrders, getOrdersCount } from '../db';
 
 export default async (
     root: null, 
@@ -15,21 +15,25 @@ export default async (
             // TODO throw exception Error type
             throw 'No required context argument: accountId'; 
         }
+
         const orders: Order[] = await getOrders(
             accountId, 
             limit, 
             offset
         );
-        // TODO
+
+        const total: number = await getOrdersCount(accountId);
+        const hasNext: boolean = offset + orders.length < total;
+
         const list: List = {
             pagination: {
                 ...pagination,
-                total: 0,
-                hasNext: true,
+                total,
+                hasNext,
             } as Pagination,
             items: orders,
         } as List;
-        //
+
         return list;
     } catch (error) {
         throw new ApolloError(error);
