@@ -95,6 +95,7 @@ mutation CreateOrder {
       ... on Order {
         id
         createAt
+        num
         isFree
       }
     }

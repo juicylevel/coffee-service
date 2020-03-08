@@ -13,8 +13,9 @@ export default async (
         const accountId = context.accountId || input.accountId;
         const account = { id: accountId } as Account;
         const lastPaidOrders = await getLastPaidOrders(account);
+        const num = lastPaidOrders.length + 1;
         const isFree = lastPaidOrders.length === MAX_PAID_ORDERS;
-        await createOrder(accountId, isFree);
+        await createOrder(accountId, num, isFree);
         return getLastPaidOrders(account);
     } catch (error) {
         throw new ApolloError(error);

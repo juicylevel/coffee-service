@@ -28,6 +28,7 @@ export default gql`
     type Order {
         id: ID!
         createAt: Timestamp!
+        num: Int!
         isFree: Boolean!
     }
 
