@@ -2,7 +2,7 @@
   "name": "functions",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "tsc -w",
+    "build": "tsc",
     "serve": "npm run build | firebase serve",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",

@@ -13,7 +13,7 @@ export default async (
         const { accountId } = context;
         if (!accountId) {
             // TODO throw exception Error type
-            throw 'No required context argument: accountId'; 
+            throw new Error('No required context argument: accountId'); 
         }
 
         const orders: Order[] = await getOrders(

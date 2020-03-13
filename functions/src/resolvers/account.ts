@@ -20,13 +20,13 @@ export default async (
             account = await getAccountByPhone(phone);
         } else {
             // TODO throw exception Error type
-            throw 'No required arguments: accountId or phone';
+            throw new Error('No required arguments: accountId or phone');
         }
 
         if (!account) {
-            throw oneLine`
+            throw new Error(oneLine`
                 Account by ${accountId || phone} not found.
-            `;
+            `);
         }
 
         return account;
